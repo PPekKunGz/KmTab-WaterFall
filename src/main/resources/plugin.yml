@@ -1,0 +1,13 @@
+name: KmTab-WaterFall
+version: '${project.version}'
+main: net.ppekkungz.kmtab
+api-version: 1.19.2
+authors:
+  - PPekKunGzDev
+  - KimKunG
+description: this my first plugin for waterfall.
+website: https://portfolio-ppekkungz.ml , https://github.com/MCKimKunG
+
+commands:
+  kmtab:
+    description: KmTab Command
