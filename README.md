@@ -26,11 +26,8 @@
 ***
 
 ### ⚙️ Configuration/Permissions<br>
-* Configure what information will be shown using display configs (located in /plugins/TabTPS/display-configs/)<br>
-* Each display config has a permission associated, and players with that permission will use that display config.<br>
-* The default display config uses the permission tabtps.defaultdisplay, and allows for using all three display types.<br>
-* Only one display config can be assigned to each player, even if they have permission for multiple. Set priorities for different display configs in the main config (plugins/TabTPS/main.conf)<br>
-* Configure colors for displays using theme configs (located in /plugins/TabTPS/themes/)<br>
+* Configure what information will be shown using display configs (located in /plugins/KmTab/config.yml/)<br>
+* No Permissions for settins plugin, owner or server operator can config this onlyone.
 ***
 
 ### 🧑‍💻 Maven
