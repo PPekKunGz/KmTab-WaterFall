@@ -12,6 +12,9 @@ import net.ppekkungz.Command.KmTabCommand;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +26,7 @@ public class KmTab extends Plugin {
     public void onEnable() {
         // Plugin startup logic
         System.out.println("KmTab-Waterfall : Start Testing....");
-        // Config
+        // CONFIG
         makeConfig();
         // RegisterCommand
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new KmTabCommand(this));
@@ -45,27 +48,33 @@ public class KmTab extends Plugin {
         System.out.println("KmTab-Waterfall : Stop Testing....");
     }
 
-    private void makeConfig() {
+    public void makeConfigAlternative() throws IOException {
         if (!getDataFolder().exists()) {
-            getLogger().info("Created config folder: " + getDataFolder().mkdir());
+            getDataFolder().mkdir();
         }
-        try {
-            File configFile = new File(getDataFolder(), "config.yml");
-            if (!configFile.exists()) {
-                FileWriter fileWriter = new FileWriter(configFile);
-                fileWriter.write("ListHeader:\n-TEST\nListFooter:\n-TEST");
-                fileWriter.close();
+        File file = new File(getDataFolder(), "config.yml");
+        if (!file.exists()) {
+            try (InputStream in = getResourceAsStream("config.yml")) {
+                Files.copy(in, file.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
-        } catch (Exception ignored) {
-            getLogger().warning("Can't Load Config!");
         }
+    }
+
+    public void makeConfig() {
+        try {
+            makeConfigAlternative();
+            configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void reloadConfig() {
         try {
-            File configFile = new File(getDataFolder(), "config.yml");
-            configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
+            configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
             getLogger().info("Reload Config!");
         } catch (Exception ignored) {
             getLogger().warning("Can't Reload Config!");
@@ -79,7 +88,7 @@ public class KmTab extends Plugin {
         for (String b : a) {
             builder.append("\n").append(b);
         }
-        return builder.toString().replaceFirst("\n", "");
+        return builder.toString().replaceFirst("\n", "").replace("&", "§");
     }
 
 }
