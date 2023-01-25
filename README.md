@@ -15,7 +15,7 @@
 * [Spigot]()
 * [Bukkit]()
 * [Sponge]()
-- Download the latest build from [actions](https://github.com/PPekKunGz/KmTab-WaterFall) page. You will need github account to download.
+- Download the latest build from [Releases](https://github.com/PPekKunGz/KmTab-WaterFall/releases/) page. You will need github account to download.
 ***
 
 ### 🧪 Supported platforms:<br>
