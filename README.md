@@ -3,9 +3,17 @@
 ***
 
  KmTab Support WaterFall!! ( Inspiration MCCHAMPIONS ) Make Plugin For FriendsCraft Official.
+<p align="center">
+  <img src="https://cdn.discordapp.com/attachments/714040390617006094/1064955735240347648/SPOILER_image.png" width="700" alt="accessibility text">
+</p>
 
-- More detailed documentation can be found on [wiki]() page.
-- Download the latest build from [actions]() page. You will need github account to download.
+***
+- Download the latest build from [actions](https://github.com/PPekKunGz/KmTab-WaterFall) page. You will need github account to download.
+
+### Supported platforms:<br>
+ * Spigot, Paper, Purpur (all known spigot-forks)<br>
+* Bungeecord, Waterfall (to use the plugin in bungee server)<br>
+* Java 11 and higher versions
 
 **Maven**
 ```xml
