@@ -29,6 +29,8 @@
 * Configure what information will be shown using display configs (located in /plugins/KmTab/config.yml/)<br>
 * No Permissions for settins plugin, owner or server operator can config this onlyone.
 ***
+### 🌍 Reload config command
+* Command: /tabtps reload
 
 ### 🧑‍💻 Maven
 <details><summary>Click to view</summary>
