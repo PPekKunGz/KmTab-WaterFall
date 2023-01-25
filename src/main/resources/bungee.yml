@@ -3,7 +3,7 @@ version: '${project.version}'
 main: net.ppekkungz.KmTab
 api-version: 1.19.2
 authors:
-  - PPekKunGzDev
+  - @PPekKunGzDev
   - KimKunG
 description: this my first plugin for waterfall.
 website: https://portfolio-ppekkungz.ml , https://github.com/MCKimKunG
