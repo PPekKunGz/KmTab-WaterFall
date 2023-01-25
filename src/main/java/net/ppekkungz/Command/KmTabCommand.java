@@ -6,6 +6,9 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
 import net.ppekkungz.KmTab;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class KmTabCommand implements TabExecutor {
     private final KmTab kmcore;
 
@@ -19,10 +22,12 @@ public class KmTabCommand implements TabExecutor {
             sender.sendMessage("" + ChatColor.GREEN + "KmTab-WaterFall : ReloadConfig!!");
             this.kmcore.reloadConfig();
         }
+        return false;
     }
-
-    @Override
-    public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
-        return null;
+    public List<String> onTabComplete(CommandSender sender, String[] args) {
+        ArrayList<String> lists = new ArrayList<>();
+        if (args.length == 1)
+            lists.add("reload");
+        return lists;
     }
 }

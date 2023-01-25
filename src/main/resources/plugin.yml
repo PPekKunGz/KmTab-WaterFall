@@ -1,5 +1,5 @@
 name: KmTab-WaterFall
-version: '${project.version}'
+version: '1.0-tester'
 main: net.ppekkungz.kmtab
 api-version: 1.19.2
 authors:

@@ -1,8 +1,14 @@
 package net.ppekkungz;
 
+import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.ppekkungz.Command.KmTabCommand;
 
-public final class KmTab extends Plugin {
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class KmTab extends Plugin {
 
     @Override
     public void onEnable() {
