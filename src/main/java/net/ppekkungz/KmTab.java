@@ -28,9 +28,8 @@ public class KmTab extends Plugin {
         // RegisterCommand
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new KmTabCommand(this));
         // RegistetTab
-        getProxy().getScheduler().schedule(this, new Runnable() {
-            @Override
-            public void run() {
+        getProxy().getScheduler().schedule(this, () -> {
+            if (configuration != null) {
                 BaseComponent[] header = TextComponent.fromLegacyText(listToString(configuration.getStringList("ListHeader")));
                 BaseComponent[] footer = TextComponent.fromLegacyText(listToString(configuration.getStringList("ListFooter")));
                 for (ProxiedPlayer player : getProxy().getPlayers()) {
