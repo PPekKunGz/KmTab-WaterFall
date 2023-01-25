@@ -1,6 +1,9 @@
 package net.ppekkungz;
 
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -9,6 +12,8 @@ import net.ppekkungz.Command.KmTabCommand;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class KmTab extends Plugin {
 
@@ -22,13 +27,18 @@ public class KmTab extends Plugin {
         makeConfig();
         // RegisterCommand
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new KmTabCommand(this));
-        (new Runnable() {
+        // RegistetTab
+        getProxy().getScheduler().schedule(this, new Runnable() {
+            @Override
             public void run() {
-                for (Player p : KmTab.this.getServer().getOnlinePlayers())
-                    p.setPlayerListHeaderFooter(ChatColor.translateAlternateColorCodes('&', KmTab.this.listToString(KmTab.this.getConfig().getStringList("ListHeader"))), ChatColor.translateAlternateColorCodes('&', KmTab.this.listToString(KmTab.this.getConfig().getStringList("ListFooter"))));
+                BaseComponent[] header = TextComponent.fromLegacyText(listToString(configuration.getStringList("ListHeader")));
+                BaseComponent[] footer = TextComponent.fromLegacyText(listToString(configuration.getStringList("ListFooter")));
+                for (ProxiedPlayer player : getProxy().getPlayers()) {
+                    player.setTabHeader(header, footer);
+                }
             }
-    }).runTaskTimer((Plugin)this, 1L, 1L);
-}
+        }, 1, 1, TimeUnit.SECONDS);
+    }
 
     @Override
     public void onDisable() {
@@ -37,10 +47,10 @@ public class KmTab extends Plugin {
     }
 
     private void makeConfig() {
+        if (!getDataFolder().exists()) {
+            getLogger().info("Created config folder: " + getDataFolder().mkdir());
+        }
         try {
-            if (!getDataFolder().exists()) {
-                getLogger().info("Created config folder: " + getDataFolder().mkdir());
-            }
             File configFile = new File(getDataFolder(), "config.yml");
             if (!configFile.exists()) {
                 FileWriter fileWriter = new FileWriter(configFile);
@@ -61,6 +71,16 @@ public class KmTab extends Plugin {
         } catch (Exception ignored) {
             getLogger().warning("Can't Reload Config!");
         }
+    }
+
+    public String listToString(List<String> a) {
+        if (a.isEmpty())
+            return "";
+        StringBuilder builder = new StringBuilder();
+        for (String b : a) {
+            builder.append("\n").append(b);
+        }
+        return builder.toString().replaceFirst("\n", "");
     }
 
 }
