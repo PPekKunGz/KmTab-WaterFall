@@ -22,7 +22,13 @@ public class KmTab extends Plugin {
         makeConfig();
         // RegisterCommand
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new KmTabCommand(this));
-    }
+        (new Runnable() {
+            public void run() {
+                for (Player p : KmTab.this.getServer().getOnlinePlayers())
+                    p.setPlayerListHeaderFooter(ChatColor.translateAlternateColorCodes('&', KmTab.this.listToString(KmTab.this.getConfig().getStringList("ListHeader"))), ChatColor.translateAlternateColorCodes('&', KmTab.this.listToString(KmTab.this.getConfig().getStringList("ListFooter"))));
+            }
+    }).runTaskTimer((Plugin)this, 1L, 1L);
+}
 
     @Override
     public void onDisable() {
