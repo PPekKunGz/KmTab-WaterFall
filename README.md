@@ -30,7 +30,7 @@
 * No Permissions for settins plugin, owner or server operator can config this onlyone.
 ***
 ### 🌍 Reload config command
-* Command: /tabtps reload
+* Command: /kmtab reload
 
 ### 🧑‍💻 Maven
 <details><summary>Click to view</summary>
