@@ -13,6 +13,7 @@
 ***
 ## 🪟 Link
 * [Spigot Link](https://www.spigotmc.org/resources/kmtab-waterfall.107606/)
+* [Modrinth Link](https://modrinth.com/plugin/kmtab-waterfall)
 - Download the latest build from [Releases](https://github.com/PPekKunGz/KmTab-WaterFall/releases/) page. You will need github account to download.
 ***
 
